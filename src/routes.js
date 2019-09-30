@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Router } from "react-router-dom";
 import App from "components/App";
 import Home from "components/Home";
+import Conversation from "components/Conversation";
 import Callback from "callback/callback";
 import Auth from "auth/auth0";
 import history from "./history";
@@ -88,7 +89,15 @@ export const makeMainRoutes = () => {
         />
         <Route
           path="/home"
-          render={props => provideClient(<Home auth={auth} {...props} />)}
+          render={props =>
+            provideClient(<Home client={client} auth={auth} {...props} />)
+          }
+        />
+        <Route
+          path="/conversations/:id"
+          render={props =>
+            provideClient(<Conversation auth={auth} {...props} />)
+          }
         />
         <Route
           path="/callback"

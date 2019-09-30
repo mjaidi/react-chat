@@ -1,6 +1,6 @@
 import React, { Component } from "react";
-
 import UserList from "components/UserList";
+import Conversation from "components/Conversation";
 
 class Home extends Component {
   login() {
@@ -9,7 +9,12 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated()) {
-      return <UserList />;
+      return (
+        <div className="home">
+          <UserList client={this.props.client} history={this.props.history} />
+          <Conversation />
+        </div>
+      );
     }
     return (
       <div className="container">
