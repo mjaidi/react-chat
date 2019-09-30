@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 
+import UserList from "components/UserList";
+
 class Home extends Component {
   login() {
     this.props.auth.login();
@@ -7,21 +9,11 @@ class Home extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated()) {
-      return <div> Hello </div>;
+      return <UserList />;
     }
     return (
       <div className="container">
-        <h4>
-          You are not logged in! Please{" "}
-          <a
-            style={{ cursor: "pointer" }}
-            href="#"
-            onClick={this.login.bind(this)}
-          >
-            Log In
-          </a>{" "}
-          to continue.
-        </h4>
+        <h4>You are not logged in! Please login to continue</h4>
       </div>
     );
   }

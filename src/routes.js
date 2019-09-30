@@ -7,20 +7,20 @@ import Auth from "auth/auth0";
 import history from "./history";
 import ApolloClient from "apollo-client";
 import { createHttpLink } from "apollo-link-http";
+import { split } from "apollo-link";
+import { getMainDefinition } from "apollo-utilities";
+import { WebSocketLink } from "apollo-link-ws";
 import { setContext } from "apollo-link-context";
 import { ApolloProvider } from "react-apollo";
 import { InMemoryCache } from "apollo-cache-inmemory";
 
-import { GRAPHQL_URL } from "./constants";
-
-const httpLink = createHttpLink({
-  uri: GRAPHQL_URL
-});
+import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
 
 const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
-  const token = localStorage.getItem("auth0:id_token");
   // return the headers to the context so httpLink can read them
+  const token = localStorage.getItem("auth0:id_token");
+
   return {
     headers: {
       ...headers,
@@ -29,11 +29,41 @@ const authLink = setContext((_, { headers }) => {
   };
 });
 
+const wsLink = new WebSocketLink({
+  uri: REALTIME_GRAPHQL_URL,
+  options: {
+    lazy: true,
+    timeout: 3000,
+    reconnect: true,
+    connectionParams: () => {
+      const token = localStorage.getItem("auth0:id_token");
+
+      return {
+        headers: {
+          Authorization: token ? `Bearer ${token}` : ""
+        }
+      };
+    }
+  }
+});
+
+const httpLink = createHttpLink({
+  uri: GRAPHQL_URL
+});
+
+const link = split(
+  // split based on operation type
+  ({ query }) => {
+    const { kind, operation } = getMainDefinition(query);
+    return kind === "OperationDefinition" && operation === "subscription";
+  },
+  wsLink,
+  authLink.concat(httpLink)
+);
+
 const client = new ApolloClient({
-  link: authLink.concat(httpLink),
-  cache: new InMemoryCache({
-    addTypename: false
-  })
+  link,
+  cache: new InMemoryCache()
 });
 
 const provideClient = component => {
