@@ -66,7 +66,9 @@ const link = split(
 // Create new apollo client with appropriate link
 const client = new ApolloClient({
   link,
-  cache: new InMemoryCache()
+  cache: new InMemoryCache({
+    addTypename: false
+  })
 });
 
 const provideClient = component => {

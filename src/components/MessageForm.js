@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
 
-const newMessage = gql`
+export const newMessage = gql`
   mutation newMessage(
     $currentUser: String!
     $conversation: Int!

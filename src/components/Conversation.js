@@ -6,7 +6,7 @@ import MessagesList from "components/MessagesList";
 import MessageForm from "components/MessageForm";
 import PleaseLogin from "./PleaseLogin";
 
-const fetchMessages = gql`
+export const fetchMessages = gql`
   subscription fetchMessages($id: Int!) {
     messages(where: { conversation_id: { _eq: $id } }) {
       id

@@ -17,7 +17,7 @@ export const fetchMyConversations = gql`
     }
   }
 `;
-const fetchOtherUsers = gql`
+export const fetchOtherUsers = gql`
   subscription fetchOtherUsers($id: String!) {
     users(
       where: {
@@ -37,7 +37,7 @@ const fetchOtherUsers = gql`
   }
 `;
 
-const newConversation = gql`
+export const newConversation = gql`
   mutation newConversation($currentUser: String!, $otherUser: String!) {
     insert_conversation_members(
       objects: {

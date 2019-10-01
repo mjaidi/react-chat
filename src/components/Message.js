@@ -1,6 +1,7 @@
 import React from "react";
 import { emojify } from "react-emojione";
 
+// get random color for each username
 function strToRGB(str) {
   let hash = 0;
   for (let i = 0; i < str.length; i += 1) {
