@@ -8,11 +8,11 @@ This project was built with:
 
 ### Purpose
 
-This project was built as part of a 1 day front end development test to showcase how to build a *SPA CHAT APP* with *REACT*
+This project was built as part of a 1 day front end development test to showcase how to build a **SPA CHAT APP** with **REACT**
 
 ## Available Scripts
 
-In order to run this project in development you will need to add a *constants.js* file in the /src directory
+In order to run this project in development you will need to add a **constants.js** file in the /src directory
 
 Format of the file:
 ```javascript
@@ -38,7 +38,7 @@ export const REALTIME_GRAPHQL_URL = `${scheme(
 )}://${HASURA_GRAPHQL_ENGINE_HOSTNAME}/v1/graphql`;
 
 ```
-Use *yarn start* to run the project in development mode
+Use **yarn start** to run the project in development mode
 <br>
 Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
