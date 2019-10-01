@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import logo from "assets/logo.svg";
 
 class App extends Component {
   goTo(route) {
@@ -23,13 +24,23 @@ class App extends Component {
 
     return (
       <div className="app">
-        <header>
-          <button onClick={this.goTo.bind(this, "home")}>Home</button>
+        <header className="navbar">
+          <div className="navbar-left">
+            <img src={logo} className="navbar-logo" alt="logo" />
+            <p className="navbar-link" onClick={this.goTo.bind(this, "home")}>
+              Home
+            </p>
+          </div>
+
           {!isAuthenticated() && (
-            <button onClick={this.login.bind(this)}>Log In</button>
+            <p className="navbar-link" onClick={this.login.bind(this)}>
+              Log In
+            </p>
           )}
           {isAuthenticated() && (
-            <button onClick={this.logout.bind(this)}>Log Out</button>
+            <p className="navbar-link" onClick={this.logout.bind(this)}>
+              Log Out
+            </p>
           )}
         </header>
       </div>

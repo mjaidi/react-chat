@@ -1,6 +1,5 @@
 import React, { Component } from "react";
-import UserList from "components/UserList";
-import Conversation from "components/Conversation";
+import Sidebar from "components/Sidebar";
 
 class Home extends Component {
   login() {
@@ -11,8 +10,7 @@ class Home extends Component {
     if (isAuthenticated()) {
       return (
         <div className="home">
-          <UserList client={this.props.client} history={this.props.history} />
-          <Conversation />
+          <Sidebar client={this.props.client} history={this.props.history} />
         </div>
       );
     }

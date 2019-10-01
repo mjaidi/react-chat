@@ -3,7 +3,7 @@ import { Route, Router } from "react-router-dom";
 import App from "components/App";
 import Home from "components/Home";
 import Conversation from "components/Conversation";
-import Callback from "callback/callback";
+import Loader from "components/Loader";
 import Auth from "auth/auth0";
 import history from "./history";
 import ApolloClient from "apollo-client";
@@ -21,7 +21,6 @@ const authLink = setContext((_, { headers }) => {
   // get the authentication token from local storage if it exists
   // return the headers to the context so httpLink can read them
   const token = localStorage.getItem("auth0:id_token");
-
   return {
     headers: {
       ...headers,
@@ -38,7 +37,6 @@ const wsLink = new WebSocketLink({
     reconnect: true,
     connectionParams: () => {
       const token = localStorage.getItem("auth0:id_token");
-
       return {
         headers: {
           Authorization: token ? `Bearer ${token}` : ""
@@ -82,7 +80,7 @@ const handleAuthentication = ({ location }) => {
 export const makeMainRoutes = () => {
   return (
     <Router history={history}>
-      <div className="container">
+      <div id="main">
         <Route
           path="/"
           render={props => provideClient(<App auth={auth} {...props} />)}
@@ -96,14 +94,16 @@ export const makeMainRoutes = () => {
         <Route
           path="/conversations/:id"
           render={props =>
-            provideClient(<Conversation auth={auth} {...props} />)
+            provideClient(
+              <Conversation client={client} auth={auth} {...props} />
+            )
           }
         />
         <Route
           path="/callback"
           render={props => {
             handleAuthentication(props);
-            return <Callback {...props} />;
+            return <Loader {...props} />;
           }}
         />
       </div>

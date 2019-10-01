@@ -1,0 +1,40 @@
+#sidebar {
+    position: absolute;
+    top: 3rem;
+    left: 0;
+    padding: 1rem;
+    width: 14rem;
+    height: calc(100vh - 3rem);
+    background: #f4f4f4;
+    box-sizing: border-box;
+    overflow: scroll;
+}
+
+.sidebar-heading {
+    font-weight: 900;
+}
+
+.sidebar-list {
+    list-style: none;
+    -webkit-margin-before: 2em;
+    -webkit-margin-after: 0em;
+    -webkit-margin-start: 0px;
+    -webkit-margin-end: 0px;
+    -webkit-padding-start: 0px;
+}
+
+.sidebar-list>li {
+    font-size: 14px;
+    color: $dark;
+    cursor: pointer;
+    padding: 0.4rem 0.2rem;
+    &:hover {
+        background: darken($light, 20)
+    }
+}
+
+.sidebar-list>li.active {
+    font-weight: 600;
+    color: $light;
+    background: $dark;
+}

@@ -1,0 +1,73 @@
+.conversation-main {
+    height: calc(100vh - 3rem);
+    margin-left: 14rem;
+    display: flex;
+    flex-direction: column;
+    width: calc(100% - 14rem);
+}
+
+.conversation {
+    height: 100%;
+}
+
+.conversation-title {
+    display: flex;
+    align-items: center;
+    box-sizing: border-box;
+    padding-left: 28px;
+    height: 70px;
+    width: 100%;
+    border-bottom: 1px solid #f4f4f4;
+}
+
+.conversation-title>span {
+    font-weight: 600;
+}
+
+.conversation-content {
+    padding: 20px 20px 0 28px;
+    box-sizing: border-box;
+    height: calc(100% - 6rem);
+    overflow: scroll;
+}
+
+.message-container>i {
+    font-style: normal;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.message-container>i>small {
+    position: relative;
+    margin-left: 10px;
+    font-style: italic;
+    font-size: 10px;
+    opacity: 0.6;
+}
+
+.message-container>i>small::before {
+    content: "-";
+    position: absolute;
+    top: -1px;
+    left: -7px;
+}
+
+.message-container>p {
+    margin: 5px 0 10px;
+}
+
+.message-editor {
+    display: flex;
+    padding: 20px;
+    box-sizing: border-box;
+    height: 90px;
+    border-top: 1px solid #f4f4f4;
+}
+
+input[type="text"] {
+    padding: 10px;
+    width: 100%;
+    height: 2rem;
+    border-radius: 2px;
+    border-color: #d4d4d4;
+}
