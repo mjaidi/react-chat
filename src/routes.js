@@ -14,9 +14,9 @@ import history from "./history";
 import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
 
 // Components for Routes
-import App from "components/App";
-import Home from "components/Home";
-import Conversation from "components/Conversation";
+import App from "views/App";
+import Home from "views/Home";
+import Conversation from "views/Conversation";
 import Loader from "components/Loader";
 
 // get the authentication token from local storage if it exists

@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Subscription } from "react-apollo";
 import gql from "graphql-tag";
+import Loader from "components/Loader";
 
 export const fetchMyConversations = gql`
   subscription fetchMyConversations($id: String!) {
@@ -98,7 +99,7 @@ class Sidebar extends Component {
         >
           {({ data, error, loading }) => {
             if (loading) {
-              return null;
+              return <Loader />;
             }
             if (error) {
               return "Error loading conversations";
@@ -137,7 +138,7 @@ class Sidebar extends Component {
         >
           {({ data, error, loading }) => {
             if (loading) {
-              return null;
+              return <Loader />;
             }
             if (error) {
               return "Error loading  users";

@@ -4,7 +4,8 @@ import gql from "graphql-tag";
 import Sidebar from "components/Sidebar";
 import MessagesList from "components/MessagesList";
 import MessageForm from "components/MessageForm";
-import PleaseLogin from "./PleaseLogin";
+import PleaseLogin from "components/PleaseLogin";
+import Loader from "components/Loader";
 
 export const fetchMessages = gql`
   subscription fetchMessages($id: Int!) {
@@ -28,6 +29,7 @@ class Conversation extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
+
     if (isAuthenticated()) {
       return (
         <div className="conversation-wrapper">
@@ -43,7 +45,7 @@ class Conversation extends Component {
             >
               {({ data, error, loading }) => {
                 if (loading) {
-                  return null;
+                  return <Loader className="offset" />;
                 }
                 if (error) {
                   return "Error loading messages";
