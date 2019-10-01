@@ -10,9 +10,9 @@ This project was built with:
 
 This project was built as part of a 1 day front end development test to showcase how to build a **SPA CHAT APP** with **REACT**
 
-## Available Scripts
+## Running the Project
 
-In order to run this project in development you will need to add a **constants.js** file in the /src directory
+In order to run this project in development and production you will need to update the **constants.js** file in the **/src directory** with corresponding data for your app
 
 Format of the file:
 ```javascript
@@ -23,7 +23,7 @@ export const CALLBACK_URL =
     ? "<YOUR PRODUCTION URL>/callback"
     : "http://localhost:3000/callback";
 
-const HASURA_GRAPHQL_ENGINE_HOSTNAME = "hasura-chat-backend.herokuapp.com";
+const HASURA_GRAPHQL_ENGINE_HOSTNAME = "<YOUR HASURA URL>";
 
 const scheme = proto => {
   return window.location.protocol === "https:" ? `${proto}s` : proto;
