@@ -2,7 +2,7 @@ export const AUTH0_DOMAIN_ID = "dev-zujxkjwf.eu.auth0.com";
 export const AUTH0_CLIENT_ID = "05CezgzFjN5bgl2ZcXIAkMb0TwiAkH3o";
 export const CALLBACK_URL =
   process.env.NODE_ENV === "production"
-    ? "https://modest-jennings-c57cc9.netlify.com/#/callback"
+    ? "https://modest-jennings-c57cc9.netlify.com/callback#"
     : "http://localhost:3000/callback";
 
 const HASURA_GRAPHQL_ENGINE_HOSTNAME = "hasura-chat-backend.herokuapp.com";
