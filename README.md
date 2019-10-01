@@ -12,7 +12,7 @@ This project was built as part of a 1 day front end development test to showcase
 
 ## Running the Project
 
-In order to run this project in development and production you will need to update the **constants.js** file in the **/src directory** with corresponding data for your app
+In order to run this project in development and production you will need to update the **constants.js** file in the **/src directory** with the corresponding data for your app
 
 Format of the file:
 ```javascript
@@ -25,17 +25,7 @@ export const CALLBACK_URL =
 
 const HASURA_GRAPHQL_ENGINE_HOSTNAME = "<YOUR HASURA URL>";
 
-const scheme = proto => {
-  return window.location.protocol === "https:" ? `${proto}s` : proto;
-};
-
-export const GRAPHQL_URL = `${scheme(
-  "http"
-)}://${HASURA_GRAPHQL_ENGINE_HOSTNAME}/v1/graphql`;
-
-export const REALTIME_GRAPHQL_URL = `${scheme(
-  "ws"
-)}://${HASURA_GRAPHQL_ENGINE_HOSTNAME}/v1/graphql`;
+[...]
 
 ```
 Use **yarn start** to run the project in development mode
