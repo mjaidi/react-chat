@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import gql from "graphql-tag";
 
-const currentUser = localStorage.getItem("auth0:id_token:sub");
-
 const newMessage = gql`
   mutation newMessage(
     $currentUser: String!
@@ -35,12 +33,12 @@ class MessageForm extends Component {
     this.setState({ value: event.target.value });
   };
 
-  handleSubmit = event => {
+  handleSubmit = (event, user) => {
     event.preventDefault();
     this.props.client.mutate({
       mutation: newMessage,
       variables: {
-        currentUser: currentUser,
+        currentUser: user,
         conversation: this.props.activeConversation,
         message: this.state.value
       }
@@ -49,8 +47,13 @@ class MessageForm extends Component {
   };
 
   render() {
+    const currentUser = localStorage.getItem("auth0:id_token:sub");
+
     return (
-      <form onSubmit={this.handleSubmit} className="message-editor">
+      <form
+        onSubmit={e => this.handleSubmit(e, currentUser)}
+        className="message-editor"
+      >
         <input
           ref={input => {
             this.messageBox = input;
