@@ -23,6 +23,17 @@ export const fetchMessages = gql`
 `;
 
 class Conversation extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { isMobile: false };
+  }
+
+  componentDidMount() {
+    if (window.innerWidth < 768) {
+      this.setState({ isMobile: true });
+    }
+  }
+
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
@@ -33,12 +44,20 @@ class Conversation extends Component {
     if (isAuthenticated()) {
       return (
         <div className="conversation-wrapper">
-          <Sidebar
-            client={this.props.client}
-            history={this.props.history}
-            activeConversation={this.props.history.location.id}
-          />
-          <div className="conversation-main">
+          {!this.state.isMobile && (
+            <Sidebar
+              client={this.props.client}
+              history={this.props.history}
+              activeConversation={this.props.history.location.id}
+            />
+          )}
+          <div
+            className={
+              this.state.isMobile
+                ? "conversation-main"
+                : "conversation-main offset-conversation"
+            }
+          >
             <Subscription
               subscription={fetchMessages}
               variables={{ id: this.props.history.location.id }}

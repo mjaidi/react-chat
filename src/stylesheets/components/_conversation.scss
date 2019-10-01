@@ -1,9 +1,13 @@
 .conversation-main {
     height: calc(100vh - 3rem);
-    margin-left: 14rem;
     display: flex;
     flex-direction: column;
+    width: 100%;
+}
+
+.offset-conversation {
     width: calc(100% - 14rem);
+    margin-left: 14rem;
 }
 
 .message-editor {
