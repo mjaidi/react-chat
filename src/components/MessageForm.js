@@ -48,7 +48,6 @@ class MessageForm extends Component {
 
   render() {
     const currentUser = localStorage.getItem("auth0:id_token:sub");
-
     return (
       <form
         onSubmit={e => this.handleSubmit(e, currentUser)}

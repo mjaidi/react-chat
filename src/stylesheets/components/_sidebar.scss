@@ -5,7 +5,7 @@
     padding: 1rem;
     width: 14rem;
     height: calc(100vh - 3rem);
-    background: #f4f4f4;
+    background: $grey;
     box-sizing: border-box;
     overflow: scroll;
 }
@@ -16,7 +16,7 @@
 
 .sidebar-list {
     list-style: none;
-    -webkit-margin-before: 2em;
+    -webkit-margin-before: 0.5rem;
     -webkit-margin-after: 0em;
     -webkit-margin-start: 0px;
     -webkit-margin-end: 0px;
@@ -27,7 +27,7 @@
     font-size: 14px;
     color: $dark;
     cursor: pointer;
-    padding: 0.4rem 0.2rem;
+    padding: 0.6rem 0.4rem;
     &:hover {
         background: darken($light, 20)
     }

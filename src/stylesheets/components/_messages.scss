@@ -1,30 +1,22 @@
-.conversation-main {
-    height: calc(100vh - 3rem);
-    margin-left: 14rem;
-    display: flex;
-    flex-direction: column;
-    width: calc(100% - 14rem);
-}
-
-.conversation {
+.messages-list {
     height: 100%;
 }
 
-.conversation-title {
+.messages-list-title {
     display: flex;
     align-items: center;
     box-sizing: border-box;
     padding-left: 28px;
     height: 70px;
     width: 100%;
-    border-bottom: 1px solid #f4f4f4;
+    border-bottom: 1px solid $light;
 }
 
-.conversation-title>span {
+.messages-list-title>span {
     font-weight: 600;
 }
 
-.conversation-content {
+.messages-list-content {
     padding: 20px 20px 0 28px;
     box-sizing: border-box;
     height: calc(100% - 6rem);
@@ -54,20 +46,4 @@
 
 .message-container>p {
     margin: 5px 0 10px;
-}
-
-.message-editor {
-    display: flex;
-    padding: 20px;
-    box-sizing: border-box;
-    height: 90px;
-    border-top: 1px solid #f4f4f4;
-}
-
-input[type="text"] {
-    padding: 10px;
-    width: 100%;
-    height: 2rem;
-    border-radius: 2px;
-    border-color: #d4d4d4;
 }

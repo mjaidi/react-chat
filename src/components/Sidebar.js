@@ -2,11 +2,12 @@ import React, { Component } from "react";
 import { Subscription } from "react-apollo";
 import gql from "graphql-tag";
 
-const fetchMyConversations = gql`
+export const fetchMyConversations = gql`
   subscription fetchMyConversations($id: String!) {
     conversations(where: { conversation_members: { user_id: { _eq: $id } } }) {
       id
       conversation_members {
+        id
         member {
           id
           auth0_id
@@ -49,11 +50,6 @@ const newConversation = gql`
       returning {
         conversation {
           id
-          conversation_members {
-            member {
-              id
-            }
-          }
         }
       }
     }
@@ -68,13 +64,13 @@ class Sidebar extends Component {
     });
   }
 
-  handleNewConversation(e, other, current, mutate) {
+  handleNewConversation(e, otherUser, currentUser, mutate) {
     e.preventDefault();
     mutate({
       mutation: newConversation,
       variables: {
-        currentUser: current,
-        otherUser: other
+        currentUser: currentUser,
+        otherUser: otherUser
       }
     }).then(result => {
       this.goTo(
@@ -84,16 +80,16 @@ class Sidebar extends Component {
     });
   }
 
-  conversationMemberNames(conversation, user) {
+  conversationMemberNames(conversation, currentUser) {
+    // Get only the usernames of the other participants of a conversation
     const otherMembers = conversation.conversation_members.filter(
-      m => m.member.auth0_id !== user
+      m => m.member.auth0_id !== currentUser
     );
     return otherMembers.map(m => m.member.username).join(", ");
   }
 
   render() {
     const currentUser = localStorage.getItem("auth0:id_token:sub");
-
     return (
       <aside id="sidebar">
         <Subscription
@@ -149,13 +145,9 @@ class Sidebar extends Component {
             const filteredUsers = data.users.filter(
               u => u.auth0_id !== currentUser
             );
-
             return (
               <div>
-                <p className="sidebar-heading">
-                  {" "}
-                  Create conversation with other users
-                </p>
+                <p className="sidebar-heading"> Chat with other users</p>
                 <ul className="sidebar-list">
                   {filteredUsers.map(u => {
                     return (

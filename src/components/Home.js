@@ -1,10 +1,8 @@
 import React, { Component } from "react";
 import Sidebar from "components/Sidebar";
+import PleaseLogin from "components/PleaseLogin";
 
 class Home extends Component {
-  login() {
-    this.props.auth.login();
-  }
   render() {
     const { isAuthenticated } = this.props.auth;
     if (isAuthenticated()) {
@@ -14,11 +12,7 @@ class Home extends Component {
         </div>
       );
     }
-    return (
-      <div className="container">
-        <h4>You are not logged in! Please login to continue</h4>
-      </div>
-    );
+    return <PleaseLogin />;
   }
 }
 

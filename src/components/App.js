@@ -21,7 +21,6 @@ class App extends Component {
   }
   render() {
     const { isAuthenticated } = this.props.auth;
-
     return (
       <div className="app">
         <header className="navbar">
@@ -33,12 +32,20 @@ class App extends Component {
           </div>
 
           {!isAuthenticated() && (
-            <p className="navbar-link" onClick={this.login.bind(this)}>
+            <p
+              className="navbar-link"
+              id="login"
+              onClick={this.login.bind(this)}
+            >
               Log In
             </p>
           )}
           {isAuthenticated() && (
-            <p className="navbar-link" onClick={this.logout.bind(this)}>
+            <p
+              className="navbar-link"
+              id="logout"
+              onClick={this.logout.bind(this)}
+            >
               Log Out
             </p>
           )}

@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`App should render correctly without crashing 1`] = `
+<div
+  className="app"
+>
+  <header
+    className="navbar"
+  >
+    <div
+      className="navbar-left"
+    >
+      <img
+        alt="logo"
+        className="navbar-logo"
+        src="logo.svg"
+      />
+      <p
+        className="navbar-link"
+        onClick={[Function]}
+      >
+        Home
+      </p>
+    </div>
+    <p
+      className="navbar-link"
+      id="login"
+      onClick={[Function]}
+    >
+      Log In
+    </p>
+  </header>
+</div>
+`;
