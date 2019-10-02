@@ -22,7 +22,11 @@ class Home extends Component {
       return (
         <div className="home">
           {!hideSidebarForMobileConversations() && (
-            <Sidebar client={this.props.client} history={this.props.history} />
+            <Sidebar
+              client={this.props.client}
+              history={this.props.history}
+              activeConversation={this.props.history.location.id}
+            />
           )}
         </div>
       );
