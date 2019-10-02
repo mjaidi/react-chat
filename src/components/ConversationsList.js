@@ -57,7 +57,7 @@ export const newConversation = gql`
   }
 `;
 
-class Sidebar extends Component {
+class ConversationsList extends Component {
   goTo(route, id) {
     this.props.history.push({
       pathname: `/${route}/${id}`,
@@ -75,7 +75,7 @@ class Sidebar extends Component {
       }
     }).then(result => {
       this.goTo(
-        "home/conversations",
+        "conversations",
         result.data.insert_conversation_members.returning[0].conversation.id
       );
     });
@@ -92,7 +92,7 @@ class Sidebar extends Component {
   render() {
     const currentUser = localStorage.getItem("auth0:id_token:sub");
     return (
-      <aside id="sidebar">
+      <aside id="conversations-list">
         <Subscription
           subscription={fetchMyConversations}
           variables={{ id: currentUser }}
@@ -106,12 +106,12 @@ class Sidebar extends Component {
             }
             return (
               <div>
-                <p className="sidebar-heading">
+                <p className="conversations-group-heading">
                   {" "}
                   My Conversations (
                   {!data.conversations ? 0 : data.conversations.length})
                 </p>
-                <ul className="sidebar-list">
+                <ul className="conversations-group-list">
                   {data.conversations.map(c => {
                     return (
                       <li
@@ -121,11 +121,7 @@ class Sidebar extends Component {
                             ? "active"
                             : null
                         }
-                        onClick={this.goTo.bind(
-                          this,
-                          "home/conversations",
-                          c.id
-                        )}
+                        onClick={this.goTo.bind(this, "conversations", c.id)}
                       >
                         {this.conversationMemberNames(c, currentUser)}
                       </li>
@@ -152,8 +148,11 @@ class Sidebar extends Component {
             );
             return (
               <div>
-                <p className="sidebar-heading"> Chat with other users</p>
-                <ul className="sidebar-list">
+                <p className="conversations-group-heading">
+                  {" "}
+                  Chat with other users
+                </p>
+                <ul className="conversations-group-list">
                   {filteredUsers.map(u => {
                     return (
                       <li
@@ -181,4 +180,4 @@ class Sidebar extends Component {
   }
 }
 
-export default Sidebar;
+export default ConversationsList;

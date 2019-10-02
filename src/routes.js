@@ -14,8 +14,8 @@ import history from "./history";
 import { GRAPHQL_URL, REALTIME_GRAPHQL_URL } from "./constants";
 
 // Components for Routes
-import App from "views/App";
-import Home from "views/Home";
+import Navigation from "views/Navigation";
+import Conversations from "views/Conversations";
 import Conversation from "views/Conversation";
 import Loader from "components/Loader";
 
@@ -83,6 +83,9 @@ const handleAuthentication = ({ location }) => {
   }
 };
 
+// Calculating if current window is mobile
+const isMobile = () => window.innerWidth < 768;
+
 // main routes including callback for auth0 authentication on login
 export const makeMainRoutes = () => {
   return (
@@ -90,19 +93,31 @@ export const makeMainRoutes = () => {
       <div id="main">
         <Route
           path="/"
-          render={props => provideClient(<App auth={auth} {...props} />)}
+          render={props => provideClient(<Navigation auth={auth} {...props} />)}
         />
         <Route
-          path="/home"
+          path="/conversations"
           render={props =>
-            provideClient(<Home client={client} auth={auth} {...props} />)
+            provideClient(
+              <Conversations
+                client={client}
+                auth={auth}
+                isMobile={isMobile()}
+                {...props}
+              />
+            )
           }
         />
         <Route
-          path="/home/conversations/:id"
+          path="/conversations/:id"
           render={props =>
             provideClient(
-              <Conversation client={client} auth={auth} {...props} />
+              <Conversation
+                client={client}
+                auth={auth}
+                isMobile={isMobile()}
+                {...props}
+              />
             )
           }
         />

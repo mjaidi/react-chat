@@ -2,11 +2,11 @@ import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 
-import Sidebar, {
+import ConversationsList, {
   fetchMyConversations,
   fetchOtherUsers,
   newConversation
-} from "components/Sidebar";
+} from "components/ConversationsList";
 
 let mocks = [
   {
@@ -90,7 +90,7 @@ let mocks = [
   }
 ];
 
-describe("Sidebar", () => {
+describe("ConversationsList", () => {
   // let component;
   // const wait = (time = 0) => new Promise(res => setTimeout(res, time));
   // const executeMockProviderTestCase = componentInstance => {
@@ -99,11 +99,11 @@ describe("Sidebar", () => {
   // beforeEach(() => {
   //   component = mount(
   //     <MockedProvider mocks={mocks} addTypename={false}>
-  //       <Sidebar />
+  //       <ConversationsList />
   //     </MockedProvider>
   //   );
   // });
-  it("placeholder test for sidebar suite - trouble with Mock Subscription Query", () => {
+  it("placeholder test for ConversationsList suite - trouble with Mock Subscription Query", () => {
     expect(2).toBe(2);
   });
 

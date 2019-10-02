@@ -3,7 +3,6 @@ import { Subscription } from "react-apollo";
 import gql from "graphql-tag";
 import MessagesList from "components/MessagesList";
 import MessageForm from "components/MessageForm";
-import PleaseLogin from "components/PleaseLogin";
 import Loader from "components/Loader";
 
 export const fetchMessages = gql`
@@ -28,13 +27,12 @@ class Conversation extends Component {
 
   render() {
     const { isAuthenticated } = this.props.auth;
-    const isMobile = () => window.innerWidth < 768;
     if (isAuthenticated()) {
       return (
         <div className="conversation-wrapper">
           <div
             className={
-              isMobile()
+              this.props.isMobile
                 ? "conversation-main"
                 : "conversation-main offset-conversation"
             }
@@ -63,7 +61,7 @@ class Conversation extends Component {
         </div>
       );
     }
-    return <PleaseLogin />;
+    return null;
   }
 }
 

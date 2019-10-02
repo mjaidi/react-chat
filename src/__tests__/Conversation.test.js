@@ -2,7 +2,7 @@ import React from "react";
 import { mount } from "enzyme";
 import { MockedProvider } from "@apollo/react-testing";
 
-import Conversation, { fetchMessages } from "components/Conversation";
+import Conversation, { fetchMessages } from "views/Conversation";
 
 let mocks = [
   {

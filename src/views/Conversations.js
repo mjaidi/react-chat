@@ -1,18 +1,18 @@
 import React, { Component } from "react";
-import Sidebar from "components/Sidebar";
+import ConversationsList from "components/ConversationsList";
 import PleaseLogin from "components/PleaseLogin";
 import { matchPath } from "react-router-dom";
 
-class Home extends Component {
+class Conversations extends Component {
   render() {
     const { isAuthenticated } = this.props.auth;
-    const hideSidebarForMobileConversations = () => {
+    const hideConversationsListForMobileConversations = () => {
       const match = matchPath(this.props.history.location.pathname, {
-        path: "/home/conversations/:id",
+        path: "/conversations/:id",
         exact: true,
         strict: false
       });
-      if (match !== null && window.innerWidth < 768) {
+      if (match !== null && this.props.isMobile) {
         return true;
       }
       return false;
@@ -20,9 +20,9 @@ class Home extends Component {
 
     if (isAuthenticated()) {
       return (
-        <div className="home">
-          {!hideSidebarForMobileConversations() && (
-            <Sidebar
+        <div>
+          {!hideConversationsListForMobileConversations() && (
+            <ConversationsList
               client={this.props.client}
               history={this.props.history}
               activeConversation={this.props.history.location.id}
@@ -35,4 +35,4 @@ class Home extends Component {
   }
 }
 
-export default Home;
+export default Conversations;

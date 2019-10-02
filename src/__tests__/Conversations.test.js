@@ -1,12 +1,13 @@
 import React from "react";
 import { shallow } from "enzyme";
-import Home from "components/Home";
+import Conversations from "views/Conversations";
 import Auth from "../auth/auth0.js";
+import history from "../history";
 
-describe("Home", () => {
+describe("Conversations", () => {
   let component;
   beforeEach(() => {
-    component = shallow(<Home auth={new Auth()} />);
+    component = shallow(<Conversations auth={new Auth()} history={history} />);
   });
   it("should render correctly without crashing", () => {
     expect(component).toMatchSnapshot();
@@ -14,12 +15,12 @@ describe("Home", () => {
 
   it("should render PleaseLogin component if authentication fails", () => {
     expect(component.find("PleaseLogin").exists()).toBe(true);
-    expect(component.find("Sidebar").exists()).toBe(false);
+    expect(component.find("ConversationsList").exists()).toBe(false);
   });
 
-  it("should render Sidebar component if authentication succeeds", () => {
+  it("should render ConversationsList component if authentication succeeds", () => {
     component.setProps({ auth: { isAuthenticated: () => true } });
     expect(component.find("PleaseLogin").exists()).toBe(false);
-    expect(component.find("Sidebar").exists()).toBe(true);
+    expect(component.find("ConversationsList").exists()).toBe(true);
   });
 });

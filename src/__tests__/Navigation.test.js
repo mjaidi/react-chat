@@ -1,12 +1,12 @@
 import React from "react";
 import { shallow } from "enzyme";
-import App from "components/App";
+import Navigation from "views/Navigation";
 import Auth from "../auth/auth0.js";
 
-describe("App", () => {
+describe("Navigation", () => {
   let component;
   beforeEach(() => {
-    component = shallow(<App auth={new Auth()} />);
+    component = shallow(<Navigation auth={new Auth()} />);
     component.instance().login = jest.fn();
     component.instance().logout = jest.fn();
     component.instance().forceUpdate();

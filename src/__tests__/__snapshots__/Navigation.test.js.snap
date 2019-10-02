@@ -1,9 +1,7 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`App should render correctly without crashing 1`] = `
-<div
-  className="app"
->
+exports[`Navigation should render correctly without crashing 1`] = `
+<div>
   <header
     className="navbar"
   >
@@ -19,7 +17,7 @@ exports[`App should render correctly without crashing 1`] = `
         className="navbar-link"
         onClick={[Function]}
       >
-        Home
+        Conversations
       </p>
     </div>
     <p
