@@ -75,7 +75,7 @@ class Sidebar extends Component {
       }
     }).then(result => {
       this.goTo(
-        "conversations",
+        "home/conversations",
         result.data.insert_conversation_members.returning[0].conversation.id
       );
     });
@@ -121,7 +121,11 @@ class Sidebar extends Component {
                             ? "active"
                             : null
                         }
-                        onClick={this.goTo.bind(this, "conversations", c.id)}
+                        onClick={this.goTo.bind(
+                          this,
+                          "home/conversations",
+                          c.id
+                        )}
                       >
                         {this.conversationMemberNames(c, currentUser)}
                       </li>

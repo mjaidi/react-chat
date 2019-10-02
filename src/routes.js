@@ -99,7 +99,7 @@ export const makeMainRoutes = () => {
           }
         />
         <Route
-          path="/conversations/:id"
+          path="/home/conversations/:id"
           render={props =>
             provideClient(
               <Conversation client={client} auth={auth} {...props} />

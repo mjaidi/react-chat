@@ -1,7 +1,6 @@
 import React, { Component } from "react";
 import { Subscription } from "react-apollo";
 import gql from "graphql-tag";
-import Sidebar from "components/Sidebar";
 import MessagesList from "components/MessagesList";
 import MessageForm from "components/MessageForm";
 import PleaseLogin from "components/PleaseLogin";
@@ -23,37 +22,19 @@ export const fetchMessages = gql`
 `;
 
 class Conversation extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { isMobile: false };
-  }
-
-  componentDidMount() {
-    if (window.innerWidth < 768) {
-      this.setState({ isMobile: true });
-    }
-  }
-
   goTo(route) {
     this.props.history.replace(`/${route}`);
   }
 
   render() {
     const { isAuthenticated } = this.props.auth;
-
+    const isMobile = () => window.innerWidth < 768;
     if (isAuthenticated()) {
       return (
         <div className="conversation-wrapper">
-          {!this.state.isMobile && (
-            <Sidebar
-              client={this.props.client}
-              history={this.props.history}
-              activeConversation={this.props.history.location.id}
-            />
-          )}
           <div
             className={
-              this.state.isMobile
+              isMobile()
                 ? "conversation-main"
                 : "conversation-main offset-conversation"
             }
